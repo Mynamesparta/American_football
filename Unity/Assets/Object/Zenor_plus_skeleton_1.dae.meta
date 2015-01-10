@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: e90eee19ff2a3a7459f642311d58cf1c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.003
+    100006: Bone.008
+    100008: Bone.013
+    100010: Bone.015
+    100012: Bone.016
+    100014: Bone.017
+    100016: Bone.019
+    100018: Bone.020
+    100020: Bone.021
+    100022: Bone.028
+    100024: Bone.029
+    100026: Bone.030
+    100028: Bone.031
+    100030: Bone.032
+    100032: Bone.033
+    100034: Bone.034
+    100036: Bone.035
+    100038: Bone.036
+    100040: Bone.037
+    100042: Bone.038
+    100044: Bone.039
+    100046: Bone.040
+    100048: Bone.041
+    100050: Bone.042
+    100052: Bone.043
+    100054: Bone.044
+    100056: Bone.045
+    100058: Bone.047
+    100060: Bone.048
+    100062: Bone.049
+    100064: Bone.051
+    100066: Bone.052
+    100068: Bone.053
+    100070: Chest
+    100072: Foot.000
+    100074: Foot.001
+    100076: Hips
+    100078: Left Arm
+    100080: Left Leg
+    100082: Right Arm
+    100084: Right Leg
+    100086: Spine
+    100088: Zenor_OBj_001
+    100090: Zenor_OBj_001_MeshPart0
+    100092: Zenor_OBj_001_MeshPart1
+    100094: Zenor_OBj_001_MeshPart2
+    100096: Zenor_OBj_001_MeshPart3
+    100098: Zenor_OBj_001_MeshPart4
+    100100: Zenor_OBj_001_MeshPart5
+    100102: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone.003
+    400006: Bone.008
+    400008: Bone.013
+    400010: Bone.015
+    400012: Bone.016
+    400014: Bone.017
+    400016: Bone.019
+    400018: Bone.020
+    400020: Bone.021
+    400022: Bone.028
+    400024: Bone.029
+    400026: Bone.030
+    400028: Bone.031
+    400030: Bone.032
+    400032: Bone.033
+    400034: Bone.034
+    400036: Bone.035
+    400038: Bone.036
+    400040: Bone.037
+    400042: Bone.038
+    400044: Bone.039
+    400046: Bone.040
+    400048: Bone.041
+    400050: Bone.042
+    400052: Bone.043
+    400054: Bone.044
+    400056: Bone.045
+    400058: Bone.047
+    400060: Bone.048
+    400062: Bone.049
+    400064: Bone.051
+    400066: Bone.052
+    400068: Bone.053
+    400070: Chest
+    400072: Foot.000
+    400074: Foot.001
+    400076: Hips
+    400078: Left Arm
+    400080: Left Leg
+    400082: Right Arm
+    400084: Right Leg
+    400086: Spine
+    400088: Zenor_OBj_001
+    400090: Zenor_OBj_001_MeshPart0
+    400092: Zenor_OBj_001_MeshPart1
+    400094: Zenor_OBj_001_MeshPart2
+    400096: Zenor_OBj_001_MeshPart3
+    400098: Zenor_OBj_001_MeshPart4
+    400100: Zenor_OBj_001_MeshPart5
+    400102: //RootNode
+    4300000: Zenor_OBj_001_MeshPart0
+    4300002: Zenor_OBj_001_MeshPart1
+    4300004: Zenor_OBj_001_MeshPart2
+    4300006: Zenor_OBj_001_MeshPart3
+    4300008: Zenor_OBj_001_MeshPart4
+    4300010: Zenor_OBj_001_MeshPart5
+    9500000: //RootNode
+    13700000: Zenor_OBj_001_MeshPart0
+    13700002: Zenor_OBj_001_MeshPart1
+    13700004: Zenor_OBj_001_MeshPart2
+    13700006: Zenor_OBj_001_MeshPart3
+    13700008: Zenor_OBj_001_MeshPart4
+    13700010: Zenor_OBj_001_MeshPart5
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -4,4 +4,6 @@ using System.Collections;
 public class Tags : MonoBehaviour 
 {
 	public const string gameController = "GameController";
+	public const string camera = "MainCamera";
+
 }

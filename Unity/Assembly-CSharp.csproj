@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Object\Scripts\Camera_controller.cs" />
+     <Compile Include="Assets\Object\Scripts\Game_Controller.cs" />
      <Compile Include="Assets\Object\Scripts\Hash_id.cs" />
      <Compile Include="Assets\Object\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Object\Scripts\Tags.cs" />

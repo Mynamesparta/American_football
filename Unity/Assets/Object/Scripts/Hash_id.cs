@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Hash_id : MonoBehaviour 
@@ -8,6 +8,9 @@ public class Hash_id : MonoBehaviour
 	public int float_angular_speed;
 	public int int_jump;
 	public int Jump_1;
+	public int bool_ball;
+	public int bool_pass;
+	public int Pass;
 	void Awake ()
 	{
 		float_speed = Animator.StringToHash ("Speed");
@@ -19,5 +22,11 @@ public class Hash_id : MonoBehaviour
 		int_jump = Animator.StringToHash ("Jump");
 
 		Jump_1 = Animator.StringToHash ("Base Layer.Jump_1");
+		
+		bool_ball = Animator.StringToHash ("Ball");
+
+		bool_pass = Animator.StringToHash ("Pass");
+
+		Pass=Animator.StringToHash("Base Layer.Pass");
 	}
 }

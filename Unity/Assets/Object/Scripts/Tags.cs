@@ -5,5 +5,7 @@ public class Tags : MonoBehaviour
 {
 	public const string gameController = "GameController";
 	public const string camera = "MainCamera";
+	public const string ball="Ball";
+
 
 }

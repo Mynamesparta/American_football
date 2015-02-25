@@ -2,7 +2,7 @@
 using System.Collections;
 
 [System.Serializable]
-public enum State {Normal,Jump};
+public enum State_of_Player {Normal,Jump,Pass};
 
 public class PlayerMovement : MonoBehaviour {
 	public float turnSmoothing = 1f;   // A smoothing value for turning the player.
@@ -12,8 +12,13 @@ public class PlayerMovement : MonoBehaviour {
 	public float maxAngularSpeed = 5f;
 	public float maxSpaceTimer = 1f;
 	public Vector3 eulerAngleVelocity = new Vector3(0, 500, 0);
-	public State state=State.Normal;
+	public State_of_Player state=State_of_Player.Normal;
 	public bool isBot=true;
+	public bool have_ball=false;
+	public float Forse;
+	//public int maxForseWhenRun=5;
+	public int mouseIndex=0;
+	public Transform[] ball_position;
 
 	private Animator anim;              // Reference to the animator component.
 	private Hash_id hash;               // Reference to the HashIDs.
@@ -21,15 +26,20 @@ public class PlayerMovement : MonoBehaviour {
 	private float angular_speed;
 	private float jumpspeed;
 	private float timer;
+	private BallController ball_con;
+	private int indexBallpos=0;
+	//private bool Take_Ball = false;
 	
 	void Awake ()
 	{
+		setBallPosition (1);
 		// Setting up the references.
 		anim = GetComponent<Animator>();
 		hash = GameObject.FindGameObjectWithTag(Tags.gameController).GetComponent<Hash_id>();
+		ball_con = GameObject.FindGameObjectWithTag (Tags.ball).GetComponent<BallController> ();
 		timer = 0;
 		// Set the weight of the shouting layer to 1.
-		//anim.SetLayerWeight(1, 1f);
+		anim.SetLayerWeight(1, 1f);
 	}
 	
 	
@@ -40,18 +50,6 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			float rot = Input.GetAxis("Rotation");
 			float fow = Input.GetAxis("Forward");
-			if(Input.GetButtonDown ("Jump"))
-			{
-				/*/
-				timer+=Time.deltaTime;
-				if(timer> maxSpaceTimer)
-				{
-				}
-				/*/
-				if(anim.GetInteger(hash.int_jump)==0)
-					anim.SetInteger(hash.int_jump,1);
-				state=State.Jump;
-			}
 			MovementManagement(rot, fow);
 		}
 		else
@@ -60,6 +58,11 @@ public class PlayerMovement : MonoBehaviour {
 			anim.SetFloat (hash.float_angular_speed, 0f, speedDampTime, Time.deltaTime);
 			ChangePosition();
 			ChangeRotation();
+		}
+		if(have_ball)
+		{
+			ball_con.SetPosition(ball_position[indexBallpos]);
+			ball_con.SetRotation(transform);
 		}
 	}
 	
@@ -77,7 +80,7 @@ public class PlayerMovement : MonoBehaviour {
 		//rot = Mathf.Sign (rot);
 		switch(state)
 		{
-			case State.Normal:
+			case State_of_Player.Normal:
 			{
 				ChangeRotation ();
 				if (rot != 0f) //
@@ -99,13 +102,40 @@ public class PlayerMovement : MonoBehaviour {
 					ChangePosition ();
 					anim.SetFloat (hash.float_speed, 0f, speedDampTime, Time.deltaTime);
 				}
+				//=============================to=Jump=========
+				if(Input.GetButtonDown ("Jump"))
+				{
+					/*/
+					timer+=Time.deltaTime;
+					if(timer> maxSpaceTimer)
+					{
+					}
+					/*/
+					if(anim.GetInteger(hash.int_jump)==0)
+						anim.SetInteger(hash.int_jump,1);
+					state=State_of_Player.Jump;
+				}
+				//=============================to=Pass=========
+				if(Input.GetMouseButtonDown(mouseIndex)&&anim.GetBool(hash.bool_ball))
+				{
+					state=State_of_Player.Pass;
+					anim.SetBool(hash.bool_pass,true);
+				}
 				break;
 			}
-			case State.Jump:
+			case State_of_Player.Jump:
 			{
 				anim.SetFloat (hash.float_speed, jumpspeed, speedDampTimeJump, Time.deltaTime);
 				anim.SetFloat (hash.float_angular_speed, 0f, speedDampTime, Time.deltaTime);
-				print(anim.GetFloat(hash.float_speed));
+				//print(anim.GetFloat(hash.float_speed));
+				ChangePosition();
+				ChangeRotation();
+				break;
+			}
+			case State_of_Player.Pass:
+			{
+				anim.SetFloat (hash.float_speed, 0f, speedDampTime, Time.deltaTime);
+				anim.SetFloat (hash.float_angular_speed, 0f, speedDampTime, Time.deltaTime);
 				ChangePosition();
 				ChangeRotation();
 				break;
@@ -135,6 +165,10 @@ public class PlayerMovement : MonoBehaviour {
 		rigidbody.angularVelocity = new Vector3 (0f, angular_speed*10, 0f);
 		//print (rigidbody.rotation.y);
 	}
+	void setBot(bool setbot)
+	{
+		isBot = setbot;
+	}
 	//======================Jump==================================
 	void setJumpSpeed(float jspeed)
 	{
@@ -145,7 +179,6 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	void isSecondJump()
 	{
-		print ("second stage");
 		if (Input.GetButton("Jump")) 
 		{
 			anim.SetFloat (hash.float_speed,1f);
@@ -155,15 +188,60 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	void endJump()
 	{
-		state=State.Normal;
+		state=State_of_Player.Normal;
 		anim.SetInteger (hash.int_jump, 0);
 	}
-	//=============================================================
-	void setBot(bool setbot)
+	//======================Pass===================================
+	private int IndexOfPassForse=0;
+	void isTimetoPass()
 	{
-		print ("Bot?" + setbot);
-		isBot = setbot;
+		IndexOfPassForse++;
+		//print ("isTimetoPass: IndexOfPassForse=" + IndexOfPassForse);
+		if(!Input.GetMouseButton(mouseIndex))
+			anim.SetBool(hash.bool_pass,false);
+		/*/
+		else
+			if(IndexOfPassForse>=maxForseWhenRun&&state!=State_of_Player.Pass)
+				anim.SetBool(hash.bool_pass,false);
+		/*/
 	}
-
-
+	void Pass()
+	{
+		ball_con.Pass(IndexOfPassForse*Forse);
+		IndexOfPassForse = 0;
+		//print ("Pass");
+		have_ball = false;
+		anim.SetBool(hash.bool_ball, false);
+		anim.SetBool(hash.bool_pass,false);
+	}
+	void endPass()
+	{
+		//print ("End Pass");
+		state = State_of_Player.Normal;
+	}
+	//===============================================================
+	void OnTriggerStay(Collider other)
+	{
+			//print ("onTriggerStay:"+other.name);
+		if(!have_ball&&other.tag==Tags.ball&&ball_con.getState()!=State_of_Ball.Player&&Input.GetMouseButton(1))
+		{
+			ball_con.Take();
+			have_ball=true;
+			anim.SetBool(hash.bool_ball, true);
+		}
+	}
+	void setBallPosition(int Index)
+	{
+		if(Index>=0&&Index<ball_position.Length)
+			indexBallpos=Index;
+		else
+			print ("Error function setBallPosition in PlayerMovement.cs Index? ");
+	}
+	public Transform takeBallTransform(int Index)
+	{
+		if(Index>=0&&Index<ball_position.Length)
+			return ball_position[Index];
+		else
+			return null;
+	}
 }
